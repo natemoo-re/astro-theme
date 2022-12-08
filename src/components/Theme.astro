@@ -1,0 +1,54 @@
+<script is:inline>
+  let theme = localStorage.getItem("astro:theme") || "system";
+  let preference = window.matchMedia("(prefers-color-scheme: dark)");
+  let toggle;
+  document.documentElement.dataset.theme = theme;
+
+  window.addEventListener("DOMContentLoaded", () => {
+    toggle = document.querySelector("theme-toggle");
+    if (toggle && toggle.isConnected) {
+      toggle.setAttribute("theme", theme);
+    }
+  });
+
+  window.addEventListener("astro:theme", (event) => {
+    const theme = event.detail.theme;
+    update(theme);
+  });
+
+  preference.addEventListener("change", ({ matches }) => {
+    if (theme === "system") {
+      update(matches);
+    }
+  });
+
+  function update(value) {
+    if (value === "system") {
+      localStorage.removeItem("astro:theme");
+    } else {
+      localStorage.setItem("astro:theme", value);
+    }
+    document.documentElement.dataset.theme = value;
+    theme = value;
+  }
+</script>
+
+<style is:global>
+  :root {
+    color-scheme: dark light;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+    background: black;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+    background: white;
+  }
+  @media (prefers-color-scheme: dark) {
+    [data-theme="system"] {
+      color-scheme: dark;
+      background: black;
+    }
+  }
+</style>
