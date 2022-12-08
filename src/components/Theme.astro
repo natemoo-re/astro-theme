@@ -34,19 +34,19 @@
 </script>
 
 <style is:global>
-  :root {
+  :where(html) {
     color-scheme: dark light;
   }
-  [data-theme="dark"] {
+  :where([data-theme="dark"]) {
     color-scheme: dark;
     background: black;
   }
-  [data-theme="light"] {
+  :where([data-theme="light"]) {
     color-scheme: light;
     background: white;
   }
   @media (prefers-color-scheme: dark) {
-    [data-theme="system"] {
+    :where([data-theme="system"]) {
       color-scheme: dark;
       background: black;
     }

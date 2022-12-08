@@ -9,18 +9,20 @@ import ThemeToggle from "../components/ThemeToggle.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>Astro Theme</title>
     <Theme />
   </head>
   <body>
-    <h1>Astro</h1>
-
+    <h1>Astro Theme</h1>
+    <p>
+      No <a href="https://css-tricks.com/flash-of-inaccurate-color-theme-fart/"
+        >FART</a
+      >
+    </p>
     <ThemeToggle />
-  </body>
+  </body><style>
+    :root {
+      font-family: system-ui;
+    }
+  </style>
 </html>
-
-<style>
-  :root {
-    font-family: system-ui;
-  }
-</style>
